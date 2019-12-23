@@ -1,6 +1,19 @@
 
 <!DOCTYPE html>
 <html>
+
+ <head>
+ 
+  <title>Bem vindo ao meu chat</title>
+  
+  <?php
+  include_once  'connect_db.php';
+  include_once  'header.php';
+  ?>
+
+
+ </head>
+
 <body>
 
 <h1>Faça o login aqui</h1>

@@ -1,16 +1,24 @@
-<?php
-  include_once  'connect_db.php';
-?>
+
 <!DOCTYPE html>
 <html>
 
  <head>
- <title>Bem vindo ao meu chat</title>
-  <link rel="stylesheet" type="text/css" href="estilo.css">
+ 
+  <title>Bem vindo ao meu chat</title>
+  
+  <?php
+  include_once  'connect_db.php';
+  include_once  'header.php';
+  ?>
+
+
  </head>
 
 <body>
-
+<form action="clear.php" method="get" id="form1">
+</form>
+<button type="submit" form="form1" value="Submit">Limpar o Chat</button>
+<br>
 <?php
 session_start();
 $user= $_SESSION['username']; 
@@ -32,8 +40,11 @@ $user= $_SESSION['username'];
 
 </div>
 <br>
-    <?php
 
+
+
+    <?php
+    //daqui pra baixo ficou foda kkkkk
 
     $sql="SELECT * FROM posts ;";
     $result= mysqli_query($conn,$sql);

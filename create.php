@@ -1,8 +1,19 @@
-<?php
-	include_once  'connect_db.php';
-?>
+
 <!DOCTYPE html>
 <html>
+
+ <head>
+ 
+  <title>Bem vindo ao meu chat</title>
+  
+  <?php
+  include_once  'connect_db.php';
+  include_once  'header.php';
+  ?>
+
+
+ </head>
+
 <body>
 
 <?php
@@ -19,6 +30,10 @@
 		$sql="insert into users (username,password,email) VALUES ('$username','$password','$email');";
 		
 		$result= mysqli_query($conn,$sql);
+		setcookie('username',$username,time()+60*60*7);
+		setcookie('password',$password,time()+60*60*7);
+		session_start();
+		$_SESSION['username'] =$username;
 		echo "login criado com sucesso<br>";
 		echo "<a href='home.php'>clique aqui</a> para prosseguir para a sala de chat";
 	}
