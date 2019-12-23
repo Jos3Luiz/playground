@@ -1,0 +1,14 @@
+#sql
+#primary key diz q a chave eh unica
+create table users (
+	id  int(11) not null PRIMARY KEY AUTO_INCREMENT,
+	username varchar(40) not null,
+	password varchar(100) not null,
+	email varchar(100) not null,
+	
+);
+
+
+insert into users (username,password,email) VALUES ('esoj','batata','joselOliveira11@gmail.com');
+
+
