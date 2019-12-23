@@ -1,108 +1,71 @@
-<html>
- <head>
- <title>Bem vindo ao meu chat</title>
- </head>
- <body>
-
-
-
+<?php
+  include_once  'connect_db.php';
+?>
 <!DOCTYPE html>
 <html>
+
+ <head>
+ <title>Bem vindo ao meu chat</title>
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+ </head>
+
 <body>
-
-
-
- <style>
-    body {
-      background-color: powderblue;
-    }
-    h1  {
-      color: blue;
-    }
-    p  {
-      color: blue;
-    }
-    
-    .boxed {
-  border: 1px solid green ;
-}
-</style>
-
-
-<form id="myForm2" action="?" method="post">
- <input type="hidden" name="limpar" value="0" />
- <input type="submit" value="limpar Chat" onclick="myFunction2()" />
-</form>
-
-<br> Bem vindo ao chat do ESOJ. Conversem entre si e sejam educados !</br>
-<div class="boxed">
-    <?php
-    //Envia as respostas de uma execucao de arquivo atraves do metodos post e paramentro name
-    $myfile = fopen("chat.txt", "r") or die("Unable to open file!");
-    echo fread($myfile,filesize("chat.txt"));
-    fclose($myfile);
-    echo $_POST['name'].": ".$_POST['mensagem'];
-    ?> 
-</div>
-
-<form id="myForm" action="?" method="post">
-  usuario:<input name="name" value=
-          <?php if ($_POST['name']!=""){
-                echo $_POST['name']; 
-          } 
-          else{
-            echo "anonimo";
-          } 
-          ?>
->
- mensagem: <input type="text" name="mensagem" size="50" autofocus/>
- <input type="submit" onclick="myFunction()" />
-</form>
-
-
-
-
-<?php
-//Envia as respostas de uma execucao de arquivo atraves do metodos post e paramentro name
-$myfile = fopen("chat.txt", "a") or die("Unable to open file!");
-if ($_POST['mensagem']!=""){
-    fwrite($myfile,$_POST['name'].": ".$_POST['mensagem']."\n<br>");
-}
-fclose($myfile);
-if ($_POST['limpar']=="0")
-{
-    $myfile = fopen("chat.txt", "w") or die("Unable to open file!");
-    fwrite($myfile,"ola mundo!<br>");
-    fclose($myfile);
-}
-?>
-
-
-
-
-<br> <p>Ei, eu n sou um bom programador , por favor, nao tente adivinhar minha senha de admin  <3</p><br>
-
-<form id="myForm3" action="login.php" method="post">
-<br> login:<input type="text" name="login"  />
-<br> senha<input type="password" name="password"  />
-  <input type="submit" value="login!" onclick="myFunction3()" />
-</form>
-
-
-
-<script>
-function myFunction() {
-  document.getElementById("myForm").submit();
-}
-function myFunctio2() {
-  document.getElementById("myForm2").submit();
-}
-function myFunctio3() {
-  document.getElementById("myForm3").submit();
-}
-</script>
 
 <?php
 session_start();
-echo "welcome home".$_SESSION['username']; 
+$user= $_SESSION['username']; 
 ?>
+
+
+<br> Bem vindo ao chat, <?php $user ?>. Conversem entre si e sejam educados !</br>
+<div class="boxed">
+    
+
+
+<form id="myForm" action="publish.php" method="post">
+    usuario: <?php echo $user; ?> <br>
+    Titulo: <input type="text" name="titulo" size="50" autofocus/><br>
+    Mensagem: <input type="text" name="conteudo" size="100" /><br>
+    <input type="submit" value="Submit" />
+</form>
+
+
+</div>
+<br>
+    <?php
+
+
+    $sql="SELECT * FROM posts ;";
+    $result= mysqli_query($conn,$sql);
+    
+    while($row = mysqli_fetch_array($result))
+    {
+        echo "<div class=\"boxed\">";
+        echo "Autor: ".$row['poster']."<br>";
+        echo "Titulo:".$row['titulo']."<br><br>";
+        echo "Postagem: ".$row['conteudo']."<br>";
+        $date=$row['date'];
+        echo "<br>Publicado em:".date('m/d/Y', $date)."<br>";
+        echo "Likes: ".$row['likes']."<br>";
+        
+
+
+        echo "</div><br>";
+
+    }
+
+
+
+
+?>
+
+
+</body>
+</html>
+
+
+
+
+
+
+

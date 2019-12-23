@@ -26,16 +26,7 @@
 		echo "já existe um usuario com esse nome!";
 		echo "<br><a href='create_account.php'>clique aqui</a> para voltar";
 	}
-	//$sql="insert into users (username,password,email) VALUES ('$username','$password','$email');";
-	//$sql="SELECT * FROM users;";
-	//$result= mysqli_query($conn,$sql);
-	//$row=mysqli_fetch_assoc($result);
-	//echo $row['username'];
-	//echo $result;
-	//$password=$_POST['password'];
 
-    
-    //header("location: login.php")
 ?>
 </body>
 </html>
