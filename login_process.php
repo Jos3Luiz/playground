@@ -40,8 +40,8 @@
 			if($password_bd ==$password)
 			{
 				echo "sua senha=".$password;
-				setcookie('username',$username,time()+60*60*7);
-				setcookie('password',$password,time()+60*60*7);
+				//setcookie('username',$username,time()+60*60*7);
+				//setcookie('password',$password,time()+60*60*7);
 				session_start();
 				$_SESSION['username'] =$username;
 				header("location: home.php");

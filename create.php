@@ -30,8 +30,8 @@
 		$sql="insert into users (username,password,email) VALUES ('$username','$password','$email');";
 		
 		$result= mysqli_query($conn,$sql);
-		setcookie('username',$username,time()+60*60*7);
-		setcookie('password',$password,time()+60*60*7);
+		//setcookie('username',$username,time()+60*60*7);
+		//setcookie('password',$password,time()+60*60*7);
 		session_start();
 		$_SESSION['username'] =$username;
 		echo "login criado com sucesso<br>";

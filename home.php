@@ -16,16 +16,36 @@
 
 <body>
 <form action="clear.php" method="get" id="form1">
-</form>
+
+<form>
 <button type="submit" form="form1" value="Submit">Limpar o Chat</button>
+<form>
+
+
+ <a href="logoff.php">Logoff</a>
+
 <br>
+
+
 <?php
-session_start();
+  session_start();
 $user= $_SESSION['username']; 
+if ($user=="")
+{
+  header('Location: index.php'); 
+}
 ?>
+ 
+<script>
+//gtag('set', {'user_id': '$user; '}); 
+
+gtag('config', 'UA-156432937-1', {
+  'user_id': '<?php echo $user;?>' 
+});
 
 
-<br> Bem vindo ao chat, <?php $user ?>. Conversem entre si e sejam educados !</br>
+</script>
+<br> Bem vindo ao chat, <?php echo $user; ?>. Conversem entre si e sejam educados !</br>
 <div class="boxed">
     
 
