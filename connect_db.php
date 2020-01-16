@@ -1,5 +1,5 @@
 <?php 
-$dbServername="10.30.6.154";
+$dbServername="127.0.0.1";
 $dbUsername = "root";
 $dbPassword="rootpass";
 
